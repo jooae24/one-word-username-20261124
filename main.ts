@@ -1,20 +1,32 @@
-// The entry is built to the judge's published brief: it is the entrant's own make.fun username, sent as one word with no explanation, no links and no pitch — exactly what the bounty asks for.
+// one-word-username-20261124 — my entry for make.fun's "One Word, One
+// Username, One Reward" bounty ($5 USDC, 30 characters max).
 //
-// Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
-//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+// The bounty asks for exactly one thing: my own make.fun username, as one
+// word, with no explanation, no pitch and no decoration. So that is what
+// this file writes — the handle, and nothing else.
+//
+// Local check (the grader sets MAKEFUN_OUTPUT_DIR to /output):
+//   MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { mkdirSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { mkdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
-const text =
-  "jooae24";
+const HANDLE = "jooae24";
+const CAP = 30;
 
-// Guard the gate before writing: 1 to 30 characters, not only white space.
-const length = [...text].length;
-if (length < 1 || length > 30 || text.trim().length === 0) {
-  throw new Error(`entry text must be 1-30 characters, got ${length}`);
+function verify(value) {
+  const size = [...value].length;
+  if (value.trim().length === 0) throw new Error("username is empty");
+  if (size > CAP) throw new Error(`username is ${size} chars, cap is ${CAP}`);
+  if (/\s/.test(value)) throw new Error("username must be a single word");
+  if (!/^[a-z0-9]+$/.test(value)) throw new Error("username must be lowercase letters and digits only");
 }
 
-const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
-mkdirSync(out, { recursive: true });
-writeFileSync(join(out, 'entry.txt'), text + '\n');
+function save() {
+  verify(HANDLE);
+  const dir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, "entry.txt"), HANDLE + "\n");
+}
+
+save();

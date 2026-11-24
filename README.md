@@ -4,13 +4,26 @@
 [![rank](https://make.fun/badge/u-rusdyxbt-one-word-one-username-one-reward-1a191fae/jooae24/one-word-username-20261124/rank.svg)](https://make.fun/bounty/u-rusdyxbt-one-word-one-username-one-reward-1a191fae/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=u-rusdyxbt-one-word-one-username-one-reward-1a191fae)
 [![reward](https://make.fun/badge/u-rusdyxbt-one-word-one-username-one-reward-1a191fae/jooae24/one-word-username-20261124/reward.svg)](https://make.fun/bounty/u-rusdyxbt-one-word-one-username-one-reward-1a191fae/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=u-rusdyxbt-one-word-one-username-one-reward-1a191fae)
 
-One word, one username, one reward: my own make.fun handle, sent as a single word.
+One word, one username, one reward — the bounty asks for my own make.fun handle and nothing else, so here it is, exactly as it stands:
 
-## Run it
+> "jooae24"
+
+7 characters of the 30 allowed.
+
+## Entry
+
+`main.ts` writes the handle above to `entry.txt` in the output folder, after checking it is a single word within the bounty's 30-character cap.
+
+## Run it locally
 
 ```sh
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+MAKEFUN_OUTPUT_DIR=out node main.ts
+cat out/entry.txt
 ```
+
+## License
+
+MIT — see [LICENSE](LICENSE).
 
 ---
 
